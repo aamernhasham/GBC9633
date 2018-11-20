@@ -24,6 +24,13 @@
 		{{ title }}
 	</p>
 
+	<div id="vButton">
+		<button id="vBut" v-on:click="vueClick">Vue Button</button>
+		<ul>
+			<li v-for="vList in vLists">{{vList}}</li>
+		</ul>
+
+	</div>
 </div>
 
 <script>
@@ -32,20 +39,25 @@
 
 	//updating the list using jQuery
 	function jButtonClick(){
+  $("#jList").empty();
 	colorList.forEach(function(item){
-		$("#jList").append('<li>' + item + '</li>');
+				$("#jList").append('<li>' + item + '</li>');
 	})
 }
 	$("#jButton").click(function(){
+
 		jButtonClick();
 	});
-	new Vue({ el: "#app", data: { title: "Hello World. Baby this works!" },
-	methods: {
-		changeTitle: function(event){
-			this.title=event.target.value;
-		}
-	}
-	});
+	new Vue({ el: "#app",
+	data: { title: "Hello World. This test is successful!",
+ 					vLists: ["Red", "Blue", "Green", "Yellow"]
+				},
+				methods: {
+					vueClick(){
+						this.title="The click works";
+					}
+				}
+		});
 </script>
 </body>
 </html>
